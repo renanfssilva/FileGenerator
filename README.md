@@ -1,2 +1,2 @@
-Gerador de Arquivos
-Console application em .Net Core para gerar arquivos
+File Generator
+.Net Core Console Application to generate files
