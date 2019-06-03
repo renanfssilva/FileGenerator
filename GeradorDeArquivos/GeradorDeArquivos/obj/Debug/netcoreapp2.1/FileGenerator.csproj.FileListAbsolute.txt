@@ -1,0 +1,11 @@
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\FileGenerator.deps.json
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\FileGenerator.runtimeconfig.json
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\FileGenerator.runtimeconfig.dev.json
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\FileGenerator.dll
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\FileGenerator.pdb
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\FileGenerator.csprojAssemblyReference.cache
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\FileGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\FileGenerator.AssemblyInfoInputs.cache
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\FileGenerator.AssemblyInfo.cs
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\FileGenerator.dll
+C:\Users\Renan\Source\Repos\renanfssilva\FileGenerator\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\FileGenerator.pdb

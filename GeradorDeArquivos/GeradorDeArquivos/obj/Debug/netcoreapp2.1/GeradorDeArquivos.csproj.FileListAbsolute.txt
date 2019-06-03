@@ -1,0 +1,11 @@
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\GeradorDeArquivos.deps.json
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\GeradorDeArquivos.runtimeconfig.json
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\GeradorDeArquivos.runtimeconfig.dev.json
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\GeradorDeArquivos.dll
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\bin\Debug\netcoreapp2.1\GeradorDeArquivos.pdb
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\GeradorDeArquivos.csprojAssemblyReference.cache
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\GeradorDeArquivos.csproj.CoreCompileInputs.cache
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\GeradorDeArquivos.AssemblyInfoInputs.cache
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\GeradorDeArquivos.AssemblyInfo.cs
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\GeradorDeArquivos.dll
+C:\Users\Renan\source\repos\renanfssilva\gerador_de_arquivos\GeradorDeArquivos\GeradorDeArquivos\obj\Debug\netcoreapp2.1\GeradorDeArquivos.pdb
