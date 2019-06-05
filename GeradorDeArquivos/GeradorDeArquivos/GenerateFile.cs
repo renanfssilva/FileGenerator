@@ -1,43 +1,29 @@
-﻿using HtmlAgilityPack;
-using System;
-using System.Threading.Tasks;
+﻿using System;
+using System.IO;
+using System.Text;
 
 namespace FileGenerator
 {
     class GenerateFile
     {
         /// <summary>
-        /// String that holds the api's url that generates lorem ipsum.
+        /// Method that generates the file given the path and the text.
         /// </summary>
-        private static readonly string loremIpzumUrl = "https://www.loremipzum.com/libraries/system/generate.php";
-
-        /// <summary>
-        /// String that holds the api's url that calculate bytes.
-        /// </summary>
-        private static readonly string calculateBytesUrl = "https://mothereff.in/byte-counter#";
-
-        static async Task Main(string[] args)
+        /// <param name="path">Path entered by the user.</param>
+        /// <param name="text">Generated text.</param>
+        public async void Generate(string path, string text)
         {
-            var loremIpzumHtmlDocument = await StartCrawler(loremIpzumUrl);
-            var loremIpsum = GenerateText.GetLoremIpsum(loremIpzumHtmlDocument);
+            UnicodeEncoding uniencoding = new UnicodeEncoding();
+            string filename = String.Concat(path, "\\Generated File.txt");
 
-            var byteCounterHtmlDocument = await StartCrawler(calculateBytesUrl + loremIpsum);
-            var bytes = ByteCounter.CalculateBytes(byteCounterHtmlDocument);
+            byte[] result = uniencoding.GetBytes(text);
 
-            Console.WriteLine(bytes);
-
-            // Wait for a key to exit
-            Console.ReadKey();
-        }
-
-        private static async Task<HtmlDocument> StartCrawler(string url)
-        {
-            var crawler = new Crawler();
-            var htmlDocument = new HtmlDocument();
-
-            htmlDocument = await crawler.StartCrawlerAsync(url);
-
-            return htmlDocument;
+            using (FileStream sourceStream = File.Open(filename, FileMode.OpenOrCreate))
+            {
+                sourceStream.SetLength(1048576); // Setting the maximum length to 1MB
+                sourceStream.Seek(0, SeekOrigin.End);
+                await sourceStream.WriteAsync(result, 0, result.Length);
+            }
         }
     }
 }

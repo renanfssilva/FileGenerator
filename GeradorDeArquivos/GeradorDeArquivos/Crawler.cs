@@ -1,7 +1,6 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FileGenerator
@@ -11,19 +10,30 @@ namespace FileGenerator
         #region Internal Methods
 
         /// <summary>
-        /// Asynchronous method to initialize the crowler.
+        /// Asynchronous method to initialize the crawler.
         /// </summary>
-        /// <returns></returns>
-        internal async Task<HtmlDocument> StartCrawlerAsync(string url)
+        /// <param name="urlString">String that holds the url.</param>
+        /// <returns>Returns an HtmlDocument.</returns>
+        internal async Task<HtmlDocument> StartCrawlerAsync(string urlString)
         {
             var httpClient = new HttpClient();
-            var html = await httpClient.GetStringAsync(url);
+            var url = new Uri(urlString);
+            var html = await httpClient.GetAsync(url);
             var htmlDocument = new HtmlDocument();
 
             // Try to load the html
             try
             {
-                htmlDocument.LoadHtml(html);
+                if(html.IsSuccessStatusCode.Equals(false))
+                {
+                    httpClient.Dispose();
+                    return htmlDocument;
+                } else
+                {
+                    var stringHtml = await httpClient.GetStringAsync(url);
+                    htmlDocument.LoadHtml(stringHtml);
+                }
+                
             }
             catch (Exception e)
             {

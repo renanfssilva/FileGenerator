@@ -1,6 +1,5 @@
 ﻿using HtmlAgilityPack;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FileGenerator
@@ -22,10 +21,9 @@ namespace FileGenerator
                 var generatedText = htmlDocument.Text;
 
                 // Remove <p> notations from text
-                generatedText = generatedText.Replace("</p><p>", "%20");
+                generatedText = generatedText.Replace("</p><p>", "\n");
                 generatedText = generatedText.Remove(generatedText.IndexOf("<p>"), 3);
                 generatedText = generatedText.Remove(generatedText.IndexOf("</p>"), 4);
-                generatedText = generatedText.Replace(" ", "%20");
 
                 return generatedText.Trim();
             }
