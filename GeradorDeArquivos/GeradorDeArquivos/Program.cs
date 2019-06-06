@@ -28,8 +28,12 @@ namespace FileGenerator
             Console.WriteLine("Digite o caminho do arquivo a ser salvo: ");
             var filePath = Console.ReadLine();
 
+            Console.WriteLine("Digite o tamanho do buffer, em bytes, a ser utilizado (se deixar em branco será o valor padrão '1048576' (1MB)): ");
+            var bufferSizeString = Console.ReadLine();
+            var bufferSize = String.IsNullOrEmpty(bufferSizeString) ? 1048576 : Convert.ToInt32(bufferSizeString);
+
             var generateFile = new GenerateFile();
-            generateFile.Generate(filePath, loremIpsum);
+            generateFile.Generate(filePath, loremIpsum, bufferSize);
 
             //Console.WriteLine(bytes);
 
