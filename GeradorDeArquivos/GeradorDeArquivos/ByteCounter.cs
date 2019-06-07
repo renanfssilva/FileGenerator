@@ -5,6 +5,8 @@ namespace FileGenerator
 {
     class ByteCounter
     {
+        #region Public Methods
+
         /// <summary>
         /// Method to calculate bytes using the byte counter API.
         /// </summary>
@@ -13,6 +15,8 @@ namespace FileGenerator
         /// <returns></returns>
         public static int CalculateBytes(HtmlDocument htmlDocument, string loremIpsum)
         {
+            Console.WriteLine("Calculating bytes...\n");
+
             if (!String.IsNullOrEmpty(htmlDocument.Text) && htmlDocument.GetElementbyId("bytes") != null)
             {
                 string bytesText = htmlDocument.GetElementbyId("bytes").InnerText;
@@ -21,5 +25,7 @@ namespace FileGenerator
 
             return System.Text.Encoding.UTF8.GetByteCount(loremIpsum);
         }
+
+        #endregion
     }
 }

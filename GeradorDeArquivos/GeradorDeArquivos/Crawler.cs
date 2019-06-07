@@ -24,16 +24,12 @@ namespace FileGenerator
             // Try to load the html
             try
             {
-                if(html.IsSuccessStatusCode.Equals(false))
-                {
-                    httpClient.Dispose();
-                    return htmlDocument;
-                } else
+                Console.WriteLine("Crawling...");
+                if(html.IsSuccessStatusCode.Equals(true))
                 {
                     var stringHtml = await httpClient.GetStringAsync(url);
                     htmlDocument.LoadHtml(stringHtml);
-                }
-                
+                }                
             }
             catch (Exception e)
             {
@@ -41,7 +37,6 @@ namespace FileGenerator
             }
 
             httpClient.Dispose();
-
             return htmlDocument;
         }
 

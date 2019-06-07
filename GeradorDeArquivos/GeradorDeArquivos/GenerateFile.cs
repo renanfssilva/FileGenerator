@@ -6,56 +6,56 @@ namespace FileGenerator
 {
     class GenerateFile
     {
+        #region Public Methods
+
         /// <summary>
         /// Method that generates the file given the path and the text.
         /// </summary>
         /// <param name="path">Path entered by the user.</param>
         /// <param name="text">Generated text.</param>
-        public async void Generate(string path, string text, int bufferSize)
+        /// <param name="textSize">Text size calculated.</param>
+        /// <param name="bufferSize">Buffer size entered by user.</param>
+        public async void Generate(string path, string text, int textSize, int bufferSize, Log log)
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
-            string filename = String.Concat(path, "\\Generated File.txt");
+            byte[] byteText = uniencoding.GetBytes(text);
 
-            byte[] result = uniencoding.GetBytes(text);
-
-            if (IsValidFilepath(filename))
+            byte[] result = new byte[1048576];
+            for (int i = 0; i < (1048576 / byteText.Length); i++)
             {
-                using (FileStream sourceStream = File.Open(filename, FileMode.OpenOrCreate))
-                {
-                    sourceStream.SetLength(bufferSize); // Setting the maximum length to 1MB
-                    sourceStream.Seek(0, SeekOrigin.End);
-                    await sourceStream.WriteAsync(result, 0, result.Length);
-                }
+                log.iterations++;
+                // Append the same text into file
+                Buffer.BlockCopy(byteText, 0, result, i * byteText.Length, byteText.Length);
             }
-            else
-            {
-                Console.WriteLine("Invalid file path.");
-                Environment.Exit(1);
-            }
-
-
-        }
-
-        private bool IsValidFilepath(string filepath)
-        {
-            System.IO.FileInfo fileInfo = null;
 
             try
             {
-                fileInfo = new System.IO.FileInfo(filepath);
+                FileStream sourceStream = File.Open(path, FileMode.OpenOrCreate);
+                // Setting the maximum length to the size given
+                sourceStream.SetLength(bufferSize);
+                await sourceStream.WriteAsync(result, 0, result.Length);
             }
-            catch (ArgumentException) { }
-            catch (System.IO.PathTooLongException) { }
             catch (NotSupportedException) { }
-
-            if (fileInfo is null || !fileInfo.Exists)
+            catch (ArgumentException)
             {
-                Console.WriteLine("Invalid file path. Press any key to exit.");
+                Console.WriteLine("\nInvalid argument provided. Press any key to exit.");
                 Console.ReadKey();
                 Environment.Exit(1);
             }
-
-            return true;
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("\nInvalid file path. Press any key to exit.");
+                Console.ReadKey();
+                Environment.Exit(1);
+            }
+            catch (PathTooLongException)
+            {
+                Console.WriteLine("\nPath or file name is too long. Press any key to exit.");
+                Console.ReadKey();
+                Environment.Exit(1);
+            }
         }
+
+        #endregion
     }
 }

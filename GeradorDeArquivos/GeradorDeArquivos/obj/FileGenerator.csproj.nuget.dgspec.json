@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Renan\\Source\\Repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj": {}
+    "C:\\Users\\Renan\\source\\repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Renan\\Source\\Repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj": {
+    "C:\\Users\\Renan\\source\\repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Renan\\Source\\Repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj",
+        "projectUniqueName": "C:\\Users\\Renan\\source\\repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj",
         "projectName": "FileGenerator",
-        "projectPath": "C:\\Users\\Renan\\Source\\Repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj",
+        "projectPath": "C:\\Users\\Renan\\source\\repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\FileGenerator.csproj",
         "packagesPath": "C:\\Users\\Renan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Renan\\Source\\Repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\obj\\",
+        "outputPath": "C:\\Users\\Renan\\source\\repos\\renanfssilva\\FileGenerator\\GeradorDeArquivos\\GeradorDeArquivos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

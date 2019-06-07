@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\GeradorDeArquivos",
-    "\\GeradorDeArquivos\\GeradorDeArquivos"
+    "\\FileGenerator"
   ],
-  "SelectedNode": "\\GeradorDeArquivos\\GeradorDeArquivos\\ByteCounter.cs",
+  "SelectedNode": "\\FileGenerator\\FileGenerator.sln",
   "PreviewInSolutionExplorer": false
 }

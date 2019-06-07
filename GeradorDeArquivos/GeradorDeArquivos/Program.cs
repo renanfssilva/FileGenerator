@@ -1,5 +1,8 @@
 ﻿using HtmlAgilityPack;
 using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FileGenerator
@@ -18,29 +21,57 @@ namespace FileGenerator
 
         static async Task Main()
         {
+            // Start StopWatch to get the total generation time
+            var totalTimeStopWatch = new Stopwatch();
+            totalTimeStopWatch.Start();
+
+            var log = new Log();
+
             var loremIpzumHtmlDocument = await StartCrawler(loremIpzumUrl);
-            var loremIpsum = GenerateText.GetLoremIpsum(loremIpzumHtmlDocument);
+            var loremIpsum = GenerateText.GetLoremIpsum(loremIpzumHtmlDocument, log);
 
             var completeUrl = String.Concat(calculateBytesUrl, loremIpsum);
             var byteCounterHtmlDocument = await StartCrawler(completeUrl);
             var bytes = ByteCounter.CalculateBytes(byteCounterHtmlDocument, loremIpsum);
 
-            Console.WriteLine("Digite o caminho do arquivo a ser salvo: ");
+            Console.WriteLine("Type the full path to the generated file (including file name and extension): ");
             var filePath = Console.ReadLine();
+            while (String.IsNullOrEmpty(filePath))
+            {
+                log.iterations++;
 
-            Console.WriteLine("Digite o tamanho do buffer, em bytes, a ser utilizado (se deixar em branco será o valor padrão '1048576' (1MB)): ");
+                Console.WriteLine("\nThe file path is required. Type the full path, please.");
+                filePath = Console.ReadLine();
+            }
+
+            log.fileName = Path.GetFileName(filePath);
+            log.filePath = Path.GetDirectoryName(filePath);
+
+            Console.WriteLine("\nType the buffer size, in Megabytes (leave it blank to be the default size '104,857,600 bytes' (100MB)): ");
             var bufferSizeString = Console.ReadLine();
-            var bufferSize = String.IsNullOrEmpty(bufferSizeString) ? 1048576 : Convert.ToInt32(bufferSizeString);
+            var bufferSize = String.IsNullOrEmpty(bufferSizeString) ? 104857600 : (Convert.ToInt32(bufferSizeString) * 1048576);
 
+            // Generate file
             var generateFile = new GenerateFile();
-            generateFile.Generate(filePath, loremIpsum, bufferSize);
+            generateFile.Generate(filePath, loremIpsum, bytes, bufferSize, log);
 
-            //Console.WriteLine(bytes);
+            // Stop StopWatch to get the total generation time
+            totalTimeStopWatch.Stop();
+            log.fileGenerationTime = totalTimeStopWatch.Elapsed;
+
+            // Prints log on console
+            log.ShowLog();
 
             // Wait for a key to exit
+            Console.WriteLine("\nFile generated. Press any key to exit...");
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Method that starts the Crawler
+        /// </summary>
+        /// <param name="url">String that holds the url to be 'crawled'.</param>
+        /// <returns>Returns the HtmlDocument got by url.</returns>
         private static async Task<HtmlDocument> StartCrawler(string url)
         {
             var crawler = new Crawler();
