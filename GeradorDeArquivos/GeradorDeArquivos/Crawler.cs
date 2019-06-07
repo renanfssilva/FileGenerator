@@ -24,12 +24,12 @@ namespace FileGenerator
             // Try to load the html
             try
             {
-                Console.WriteLine("Crawling...");
-                if(html.IsSuccessStatusCode.Equals(true))
+                Console.WriteLine("\nCrawling...");
+                if (html.IsSuccessStatusCode.Equals(true))
                 {
                     var stringHtml = await httpClient.GetStringAsync(url);
                     htmlDocument.LoadHtml(stringHtml);
-                }                
+                }
             }
             catch (Exception e)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -15,7 +16,7 @@ namespace FileGenerator
         /// <param name="text">Generated text.</param>
         /// <param name="textSize">Text size calculated.</param>
         /// <param name="bufferSize">Buffer size entered by user.</param>
-        public async void Generate(string path, string text, int textSize, int bufferSize, Log log)
+        public void Generate(string path, string text, int textSize, int bufferSize, Log log)
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             byte[] byteText = uniencoding.GetBytes(text);
@@ -27,13 +28,20 @@ namespace FileGenerator
                 // Append the same text into file
                 Buffer.BlockCopy(byteText, 0, result, i * byteText.Length, byteText.Length);
             }
-
             try
             {
-                FileStream sourceStream = File.Open(path, FileMode.OpenOrCreate);
-                // Setting the maximum length to the size given
-                sourceStream.SetLength(bufferSize);
-                await sourceStream.WriteAsync(result, 0, result.Length);
+                using (FileStream sourceStream = File.Open(path, FileMode.Append, FileAccess.Write))
+                {
+                    var writeTimeStopwatch = new Stopwatch();
+                    writeTimeStopwatch.Start();
+
+                    sourceStream.Write(result, 0, result.Length);
+
+                    writeTimeStopwatch.Stop();
+                    log.writeTimes.Add(writeTimeStopwatch.Elapsed);
+
+                    log.fileSize = sourceStream.Length;
+                }
             }
             catch (NotSupportedException) { }
             catch (ArgumentException)

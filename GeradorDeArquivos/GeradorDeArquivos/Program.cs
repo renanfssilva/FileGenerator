@@ -22,17 +22,20 @@ namespace FileGenerator
         static async Task Main()
         {
             // Start StopWatch to get the total generation time
-            var totalTimeStopWatch = new Stopwatch();
-            totalTimeStopWatch.Start();
+            var totalTimeStopwatch = new Stopwatch();
+            totalTimeStopwatch.Start();
 
             var log = new Log();
 
-            var loremIpzumHtmlDocument = await StartCrawler(loremIpzumUrl);
-            var loremIpsum = GenerateText.GetLoremIpsum(loremIpzumHtmlDocument, log);
+            HtmlDocument loremIpzumHtmlDocument;
+            string loremIpsum;
 
-            var completeUrl = String.Concat(calculateBytesUrl, loremIpsum);
-            var byteCounterHtmlDocument = await StartCrawler(completeUrl);
-            var bytes = ByteCounter.CalculateBytes(byteCounterHtmlDocument, loremIpsum);
+            string completeUrl;
+            HtmlDocument byteCounterHtmlDocument;
+            int bytes;
+
+            // Generate file
+            var generateFile = new GenerateFile();
 
             Console.WriteLine("Type the full path to the generated file (including file name and extension): ");
             var filePath = Console.ReadLine();
@@ -51,13 +54,24 @@ namespace FileGenerator
             var bufferSizeString = Console.ReadLine();
             var bufferSize = String.IsNullOrEmpty(bufferSizeString) ? 104857600 : (Convert.ToInt32(bufferSizeString) * 1048576);
 
-            // Generate file
-            var generateFile = new GenerateFile();
-            generateFile.Generate(filePath, loremIpsum, bytes, bufferSize, log);
+            while (log.fileSize < bufferSize)
+            {
+                log.iterations++;
+
+                loremIpzumHtmlDocument = await StartCrawler(loremIpzumUrl);
+                loremIpsum = GenerateText.GetLoremIpsum(loremIpzumHtmlDocument, log);
+
+                completeUrl = String.Concat(calculateBytesUrl, loremIpsum);
+                byteCounterHtmlDocument = await StartCrawler(completeUrl);
+                bytes = ByteCounter.CalculateBytes(byteCounterHtmlDocument, loremIpsum);
+
+                // Generate file
+                generateFile.Generate(filePath, loremIpsum, bytes, bufferSize, log);
+            }
 
             // Stop StopWatch to get the total generation time
-            totalTimeStopWatch.Stop();
-            log.fileGenerationTime = totalTimeStopWatch.Elapsed;
+            totalTimeStopwatch.Stop();
+            log.fileGenerationTime = totalTimeStopwatch.Elapsed;
 
             // Prints log on console
             log.ShowLog();

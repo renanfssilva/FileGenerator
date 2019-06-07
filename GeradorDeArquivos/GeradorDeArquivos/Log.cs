@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FileGenerator
 {
@@ -17,7 +19,12 @@ namespace FileGenerator
         /// <summary>
         /// Write average time.
         /// </summary>
-        public TimeSpan WriteAverageTime;
+        public TimeSpan writeAverageTime;
+
+        /// <summary>
+        /// Times that buffer was written on file.
+        /// </summary>
+        public List<TimeSpan> writeTimes = new List<TimeSpan>();
 
         /// <summary>
         /// File name.
@@ -39,13 +46,13 @@ namespace FileGenerator
         /// </summary>
         public void ShowLog()
         {
-            var elapsedFileGenerationTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                                                        fileGenerationTime.Hours, fileGenerationTime.Minutes, fileGenerationTime.Seconds,
-                                                        fileGenerationTime.Milliseconds / 10);
-            
-            var elapsedWriteAverageTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                                                        WriteAverageTime.Hours, WriteAverageTime.Minutes, WriteAverageTime.Seconds,
-                                                        WriteAverageTime.Milliseconds / 10);
+            var elapsedFileGenerationTime = String.Format("{0:00}:{1:00}:{2:00.0000}",
+                                                        fileGenerationTime.Hours, fileGenerationTime.Minutes, fileGenerationTime.TotalSeconds);
+
+            var averageTime = new TimeSpan((long)writeTimes.Select(ts => ts.Ticks).Average());
+
+            var elapsedWriteAverageTime = String.Format("{0:00}:{1:00}:{2:00.0000}",
+                                                        averageTime.Hours, averageTime.Minutes, averageTime.TotalSeconds);
 
             Console.WriteLine("\n--------------------------------------------" +
                               "\n               Execution Log                " +
@@ -53,7 +60,7 @@ namespace FileGenerator
                               "\nFile generation total time: " + elapsedFileGenerationTime +
                               "\nWrite average time: " + elapsedWriteAverageTime +
                               "\nFile name: " + fileName +
-                              "\nFile size: " + fileSize +
+                              "\nFile size: " + fileSize + " bytes (" + fileSize / 1048576 + " MB)" +
                               "\nFile path: " + filePath +
                               "\n--------------------------------------------");
         }

@@ -15,7 +15,7 @@ namespace FileGenerator
         /// <returns></returns>
         public static int CalculateBytes(HtmlDocument htmlDocument, string loremIpsum)
         {
-            Console.WriteLine("Calculating bytes...\n");
+            Console.WriteLine("Calculating bytes...");
 
             if (!String.IsNullOrEmpty(htmlDocument.Text) && htmlDocument.GetElementbyId("bytes") != null)
             {

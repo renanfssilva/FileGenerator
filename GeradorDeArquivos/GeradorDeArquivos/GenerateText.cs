@@ -16,7 +16,7 @@ namespace FileGenerator
         /// <returns>Returns the formatted text.</returns>
         public static string GetLoremIpsum(HtmlDocument htmlDocument, Log log)
         {
-            Console.WriteLine("Generating text...\n");
+            Console.WriteLine("Generating text...");
             // Verifies if the text is usable
             if (!String.IsNullOrEmpty(htmlDocument.Text))
             {
