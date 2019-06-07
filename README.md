@@ -6,7 +6,7 @@ Project that uses crawling to get text from https://www.loremipzum.com/pt/gerado
 
 1. Open the project using Visual Studio;
 2. Run project;
-3. Type file path, name and extension using the template "C:\...\...\test.txt";
+3. Type file path, name and extension using the template "C:\\...\\...\test.txt";
 4. Type file size in MB, if it'll be 100MB (default), just leave it blank and press 'Enter';
 5. Wait for run;
 6. See the log;
