@@ -16,6 +16,6 @@ Project that uses crawling to get text from https://www.loremipzum.com/pt/gerado
 
 Everything that has to be installed are from NuGet on Visual Studio. It'll suggest you what are the libraries.
 
-## Authors
+## Author
 
 * **Renan Fernandes** - [renanfssilva](https://github.com/renanfssilva)
